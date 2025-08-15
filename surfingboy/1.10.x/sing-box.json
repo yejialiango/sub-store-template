@@ -71,47 +71,47 @@
       },
       {
         "rule_set": "bilibili",
-        "outbound": "bilibili"
+        "outbound": "📺Bilibili哔哩哔哩"
       },
       {
         "rule_set": [
           "geoip-netflix",
           "geosite-netflix"
         ],
-        "outbound": "netflix"
+        "outbound": "🎬Netflix奈飞"
       },
       {
         "rule_set": "bahamut",
-        "outbound": "bahamut"
+        "outbound": "🐟Bahamut巴哈姆特"
       },
       {
         "rule_set": "youtube",
-        "outbound": "youtube"
+        "outbound": "🎥YouTube油管"
       },
       {
         "rule_set": "openai",
-        "outbound": "openai"
+        "outbound": "🤖OpenAI"
       },
       {
         "rule_set": [
           "geoip-google",
           "geosite-google"
         ],
-        "outbound": "google"
+        "outbound": "🔍Google谷歌"
       },
       {
         "rule_set": [
           "geoip-apple",
           "geosite-apple"
         ],
-        "outbound": "apple"
+        "outbound": "🍎Apple苹果"
       },
       {
         "rule_set": [
           "geoip-telegram",
           "geosite-telegram"
         ],
-        "outbound": "telegram"
+        "outbound": "✈️Telegram电报"
       },
       {
         "rule_set": [
@@ -240,187 +240,133 @@
       "tag": "proxy",
       "type": "selector",
       "outbounds": [
-        "hk",
-        "hk-auto",
-        "tw",
-        "tw-auto",
-        "jp",
-        "jp-auto",
-        "sg",
-        "sg-auto",
-        "us",
-        "us-auto",
-        "all",
-        "all-auto",
+        "🇭🇰香港",
+        "🇨🇳台湾",
+        "🇯🇵日本",
+        "🇸🇬新加坡",
+        "🇺🇸美国",
+        "自动选择",
         "direct"
       ],
-      "default": "all-auto"
+      "default": "自动选择"
     },
     {
-      "tag": "google",
+      "tag": "🔍Google谷歌",
       "type": "selector",
       "outbounds": [
         "proxy",
         "direct",
-        "hk",
-        "hk-auto",
-        "tw",
-        "tw-auto",
-        "jp",
-        "jp-auto",
-        "sg",
-        "sg-auto",
-        "us",
-        "us-auto",
-        "all",
-        "all-auto"
+        "🇭🇰香港",
+        "🇨🇳台湾",
+        "🇯🇵日本",
+        "🇸🇬新加坡",
+        "🇺🇸美国",
+        "自动选择"
       ],
       "default": "proxy"
     },
     {
-      "tag": "apple",
+      "tag": "🍎Apple苹果",
       "type": "selector",
       "outbounds": [
         "proxy",
         "direct",
-        "hk",
-        "hk-auto",
-        "tw",
-        "tw-auto",
-        "jp",
-        "jp-auto",
-        "sg",
-        "sg-auto",
-        "us",
-        "us-auto",
-        "all",
-        "all-auto"
+        "🇭🇰香港",
+        "🇨🇳台湾",
+        "🇯🇵日本",
+        "🇸🇬新加坡",
+        "🇺🇸美国",
+        "自动选择"
       ],
       "default": "direct"
     },
     {
-      "tag": "telegram",
+      "tag": "✈️Telegram电报",
       "type": "selector",
       "outbounds": [
         "proxy",
         "direct",
-        "hk",
-        "hk-auto",
-        "tw",
-        "tw-auto",
-        "jp",
-        "jp-auto",
-        "sg",
-        "sg-auto",
-        "us",
-        "us-auto",
-        "all",
-        "all-auto"
+        "🇭🇰香港",
+        "🇨🇳台湾",
+        "🇯🇵日本",
+        "🇸🇬新加坡",
+        "🇺🇸美国",
+        "自动选择"
       ],
       "default": "proxy"
     },
     {
-      "tag": "bilibili",
+      "tag": "📺Bilibili哔哩哔哩",
       "type": "selector",
       "outbounds": [
         "proxy",
         "direct",
-        "hk",
-        "hk-auto",
-        "tw",
-        "tw-auto",
-        "jp",
-        "jp-auto",
-        "sg",
-        "sg-auto",
-        "us",
-        "us-auto",
-        "all",
-        "all-auto"
+        "🇭🇰香港",
+        "🇨🇳台湾",
+        "🇯🇵日本",
+        "🇸🇬新加坡",
+        "🇺🇸美国",
+        "自动选择"
       ],
       "default": "direct"
     },
     {
-      "tag": "netflix",
+      "tag": "🎬Netflix奈飞",
       "type": "selector",
       "outbounds": [
         "proxy",
         "direct",
-        "hk",
-        "hk-auto",
-        "tw",
-        "tw-auto",
-        "jp",
-        "jp-auto",
-        "sg",
-        "sg-auto",
-        "us",
-        "us-auto",
-        "all",
-        "all-auto"
+        "🇭🇰香港",
+        "🇨🇳台湾",
+        "🇯🇵日本",
+        "🇸🇬新加坡",
+        "🇺🇸美国",
+        "自动选择"
       ],
       "default": "proxy"
     },
     {
-      "tag": "bahamut",
+      "tag": "🐟Bahamut巴哈姆特",
       "type": "selector",
       "outbounds": [
         "proxy",
         "direct",
-        "hk",
-        "hk-auto",
-        "tw",
-        "tw-auto",
-        "jp",
-        "jp-auto",
-        "sg",
-        "sg-auto",
-        "us",
-        "us-auto",
-        "all",
-        "all-auto"
+        "🇭🇰香港",
+        "🇨🇳台湾",
+        "🇯🇵日本",
+        "🇸🇬新加坡",
+        "🇺🇸美国",
+        "自动选择"
       ],
       "default": "proxy"
     },
     {
-      "tag": "youtube",
+      "tag": "🎥YouTube油管",
       "type": "selector",
       "outbounds": [
         "proxy",
         "direct",
-        "hk",
-        "hk-auto",
-        "tw",
-        "tw-auto",
-        "jp",
-        "jp-auto",
-        "sg",
-        "sg-auto",
-        "us",
-        "us-auto",
-        "all",
-        "all-auto"
+        "🇭🇰香港",
+        "🇨🇳台湾",
+        "🇯🇵日本",
+        "🇸🇬新加坡",
+        "🇺🇸美国",
+        "自动选择"
       ],
       "default": "proxy"
     },
     {
-      "tag": "openai",
+      "tag": "🤖OpenAI",
       "type": "selector",
       "outbounds": [
         "proxy",
         "direct",
-        "hk",
-        "hk-auto",
-        "tw",
-        "tw-auto",
-        "jp",
-        "jp-auto",
-        "sg",
-        "sg-auto",
-        "us",
-        "us-auto",
-        "all",
-        "all-auto"
+        "🇭🇰香港",
+        "🇨🇳台湾",
+        "🇯🇵日本",
+        "🇸🇬新加坡",
+        "🇺🇸美国",
+        "自动选择"
       ],
       "default": "proxy"
     },
@@ -430,18 +376,12 @@
       "outbounds": [
         "proxy",
         "direct",
-        "hk",
-        "hk-auto",
-        "tw",
-        "tw-auto",
-        "jp",
-        "jp-auto",
-        "sg",
-        "sg-auto",
-        "us",
-        "us-auto",
-        "all",
-        "all-auto"
+        "🇭🇰香港",
+        "🇨🇳台湾",
+        "🇯🇵日本",
+        "🇸🇬新加坡",
+        "🇺🇸美国",
+        "自动选择"
       ],
       "default": "direct"
     },
@@ -451,53 +391,17 @@
       "outbounds": [
         "proxy",
         "direct",
-        "hk",
-        "hk-auto",
-        "tw",
-        "tw-auto",
-        "jp",
-        "jp-auto",
-        "sg",
-        "sg-auto",
-        "us",
-        "us-auto",
-        "all",
-        "all-auto"
+        "🇭🇰香港",
+        "🇨🇳台湾",
+        "🇯🇵日本",
+        "🇸🇬新加坡",
+        "🇺🇸美国",
+        "自动选择"
       ],
       "default": "proxy"
     },
     {
-      "tag": "hk",
-      "type": "selector",
-      "outbounds": []
-    },
-    {
-      "tag": "tw",
-      "type": "selector",
-      "outbounds": []
-    },
-    {
-      "tag": "jp",
-      "type": "selector",
-      "outbounds": []
-    },
-    {
-      "tag": "sg",
-      "type": "selector",
-      "outbounds": []
-    },
-    {
-      "tag": "us",
-      "type": "selector",
-      "outbounds": []
-    },
-    {
-      "tag": "all",
-      "type": "selector",
-      "outbounds": []
-    },
-    {
-      "tag": "hk-auto",
+      "tag": "🇭🇰香港",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -505,7 +409,7 @@
       "tolerance": 50
     },
     {
-      "tag": "tw-auto",
+      "tag": "🇨🇳台湾",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -513,7 +417,7 @@
       "tolerance": 50
     },
     {
-      "tag": "jp-auto",
+      "tag": "🇯🇵日本",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -521,7 +425,7 @@
       "tolerance": 50
     },
     {
-      "tag": "sg-auto",
+      "tag": "🇸🇬新加坡",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -529,7 +433,7 @@
       "tolerance": 50
     },
     {
-      "tag": "us-auto",
+      "tag": "🇺🇸美国",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -537,7 +441,7 @@
       "tolerance": 50
     },
     {
-      "tag": "all-auto",
+      "tag": "自动选择",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -550,20 +454,14 @@
       "outbounds": [
         "direct",
         "proxy",
-        "hk",
-        "hk-auto",
-        "tw",
-        "tw-auto",
-        "jp",
-        "jp-auto",
-        "sg",
-        "sg-auto",
-        "us",
-        "us-auto",
-        "all",
-        "all-auto"
+        "🇭🇰香港",
+        "🇨🇳台湾",
+        "🇯🇵日本",
+        "🇸🇬新加坡",
+        "🇺🇸美国",
+        "自动选择"
       ],
-      "default": "direct"
+      "default": "proxy"
     },
     {
       "tag": "direct",
