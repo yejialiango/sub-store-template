@@ -7,13 +7,13 @@
     },
     "servers": [
       {
-        "tag": "google",
+        "tag": "dns_proxy",
         "address": "https://8.8.8.8/dns-query",
         "detour": "proxy"
       },
       {
-        "tag": "tx",
-        "address": "https://120.53.53.53/dns-query",
+        "tag": "dns_direct",
+        "address": "local",
         "detour": "direct"
       },
       {
@@ -24,16 +24,41 @@
     "rules": [
       {
         "outbound": "any",
-        "server": "tx",
+        "server": "dns_direct",
         "disable_cache": true
       },
       {
         "clash_mode": "Direct",
-        "server": "tx"
+        "server": "dns_direct"
       },
       {
         "clash_mode": "Global",
         "server": "fakeip"
+      },
+      {
+        "process_name": [
+          "TencentMeeting", "NemoDesktop", "ToDesk", "ToDesk_Service",
+          "WeChat", "Tailscale", "wireguard-go", "Tunnelblick",
+          "softwareupdated", "kubectl","FortiClient","QQPCMgr"
+        ],
+        "server": "dns_direct"
+      },
+      {
+        "domain_suffix": [
+          "icloudnative.io", "fuckcloudnative.io", "sealos.io", "cdn.jsdelivr.net"
+        ],
+        "server": "dns_direct"
+      },
+      {
+        "process_name": ["DropboxMacUpdate", "Dropbox"],
+        "server": "dns_proxy"
+      },
+      {
+        "package_name": [
+          "com.google.android.youtube", "com.android.vending",
+          "org.telegram.messenger", "org.telegram.plus"
+        ],
+        "server": "dns_proxy"
       },
       {
         "query_type": [
@@ -45,11 +70,10 @@
       },
       {
         "rule_set": "geosite-cn",
-        "server": "tx"
+        "server": "dns_direct"
       }
     ],
-    "final": "google",
-    "independent_cache": true
+    "final": "dns_direct"
   },
   "route": {
     "rules": [
@@ -130,105 +154,105 @@
         "tag": "geoip-apple",
         "type": "remote",
         "format": "binary",
-        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo-lite/geoip/apple.srs",
+        "url": "https://static.surfingboy.club/github/meta-rules-dat/geo-lite/geoip/apple.srs",
         "download_detour": "direct"
       },
       {
         "tag": "geosite-apple",
         "type": "remote",
         "format": "binary",
-        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo-lite/geosite/apple.srs",
+        "url": "https://static.surfingboy.club/github/meta-rules-dat/geo-lite/geosite/apple.srs",
         "download_detour": "direct"
       },
       {
         "tag": "bahamut",
         "type": "remote",
         "format": "binary",
-        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo-lite/geosite/bahamut.srs",
+        "url": "https://static.surfingboy.club/github/meta-rules-dat/geo-lite/geosite/bahamut.srs",
         "download_detour": "direct"
       },
       {
         "tag": "bilibili",
         "type": "remote",
         "format": "binary",
-        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo-lite/geosite/bilibili.srs",
+        "url": "https://static.surfingboy.club/github/meta-rules-dat/geo-lite/geosite/bilibili.srs",
         "download_detour": "direct"
       },
       {
         "tag": "geoip-cn",
         "type": "remote",
         "format": "binary",
-        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/cn.srs",
+        "url": "https://static.surfingboy.club/github/meta-rules-dat/geo/geoip/cn.srs",
         "download_detour": "direct"
       },
       {
         "tag": "geosite-cn",
         "type": "remote",
         "format": "binary",
-        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs",
+        "url": "https://static.surfingboy.club/github/meta-rules-dat/geo/geosite/cn.srs",
         "download_detour": "direct"
       },
       {
         "tag": "geoip-google",
         "type": "remote",
         "format": "binary",
-        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo-lite/geoip/google.srs",
+        "url": "https://static.surfingboy.club/github/meta-rules-dat/geo-lite/geoip/google.srs",
         "download_detour": "direct"
       },
       {
         "tag": "geosite-google",
         "type": "remote",
         "format": "binary",
-        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo-lite/geosite/google.srs",
+        "url": "https://static.surfingboy.club/github/meta-rules-dat/geo-lite/geosite/google.srs",
         "download_detour": "direct"
       },
       {
         "tag": "geolocation-!cn",
         "type": "remote",
         "format": "binary",
-        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs",
+        "url": "https://static.surfingboy.club/github/meta-rules-dat/geo/geosite/geolocation-!cn.srs",
         "download_detour": "direct"
       },
       {
         "tag": "geoip-netflix",
         "type": "remote",
         "format": "binary",
-        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo-lite/geoip/netflix.srs",
+        "url": "https://static.surfingboy.club/github/meta-rules-dat/geo-lite/geoip/netflix.srs",
         "download_detour": "direct"
       },
       {
         "tag": "geosite-netflix",
         "type": "remote",
         "format": "binary",
-        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo-lite/geosite/netflix.srs",
+        "url": "https://static.surfingboy.club/github/meta-rules-dat/geo-lite/geosite/netflix.srs",
         "download_detour": "direct"
       },
       {
         "tag": "openai",
         "type": "remote",
         "format": "binary",
-        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/openai.srs",
+        "url": "https://static.surfingboy.club/github/meta-rules-dat/geo/geosite/openai.srs",
         "download_detour": "direct"
       },
       {
         "tag": "geoip-telegram",
         "type": "remote",
         "format": "binary",
-        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo-lite/geoip/telegram.srs",
+        "url": "https://static.surfingboy.club/github/meta-rules-dat/geo-lite/geoip/telegram.srs",
         "download_detour": "direct"
       },
       {
         "tag": "geosite-telegram",
         "type": "remote",
         "format": "binary",
-        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo-lite/geosite/telegram.srs",
+        "url": "https://static.surfingboy.club/github/meta-rules-dat/geo-lite/geosite/telegram.srs",
         "download_detour": "direct"
       },
       {
         "tag": "youtube",
         "type": "remote",
         "format": "binary",
-        "url": "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo-lite/geosite/youtube.srs",
+        "url": "https://static.surfingboy.club/github/meta-rules-dat/geo-lite/geosite/youtube.srs",
         "download_detour": "direct"
       }
     ],
@@ -240,6 +264,11 @@
       "tag": "proxy",
       "type": "selector",
       "outbounds": [
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
         "🇭🇰香港",
         "🇨🇳台湾",
         "🇯🇵日本",
@@ -256,6 +285,11 @@
       "outbounds": [
         "proxy",
         "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
         "🇭🇰香港",
         "🇨🇳台湾",
         "🇯🇵日本",
@@ -271,6 +305,11 @@
       "outbounds": [
         "proxy",
         "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
         "🇭🇰香港",
         "🇨🇳台湾",
         "🇯🇵日本",
@@ -286,6 +325,11 @@
       "outbounds": [
         "proxy",
         "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
         "🇭🇰香港",
         "🇨🇳台湾",
         "🇯🇵日本",
@@ -301,6 +345,11 @@
       "outbounds": [
         "proxy",
         "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
         "🇭🇰香港",
         "🇨🇳台湾",
         "🇯🇵日本",
@@ -316,6 +365,11 @@
       "outbounds": [
         "proxy",
         "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
         "🇭🇰香港",
         "🇨🇳台湾",
         "🇯🇵日本",
@@ -331,6 +385,11 @@
       "outbounds": [
         "proxy",
         "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
         "🇭🇰香港",
         "🇨🇳台湾",
         "🇯🇵日本",
@@ -346,6 +405,11 @@
       "outbounds": [
         "proxy",
         "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
         "🇭🇰香港",
         "🇨🇳台湾",
         "🇯🇵日本",
@@ -361,6 +425,11 @@
       "outbounds": [
         "proxy",
         "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
         "🇭🇰香港",
         "🇨🇳台湾",
         "🇯🇵日本",
@@ -376,6 +445,11 @@
       "outbounds": [
         "proxy",
         "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
         "🇭🇰香港",
         "🇨🇳台湾",
         "🇯🇵日本",
@@ -391,6 +465,11 @@
       "outbounds": [
         "proxy",
         "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
         "🇭🇰香港",
         "🇨🇳台湾",
         "🇯🇵日本",
@@ -402,30 +481,31 @@
     },
     {
       "tag": "🇭🇰香港",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "1m",
-      "tolerance": 50
+      "type": "selector",
+      "outbounds": []
     },
     {
       "tag": "🇨🇳台湾",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "1m",
-      "tolerance": 50
+      "type": "selector",
+      "outbounds": []
     },
     {
       "tag": "🇯🇵日本",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "1m",
-      "tolerance": 50
+      "type": "selector",
+      "outbounds": []
     },
     {
       "tag": "🇸🇬新加坡",
+      "type": "selector",
+      "outbounds": []
+    },
+    {
+      "tag": "🇺🇸美国",
+      "type": "selector",
+      "outbounds": []
+    },
+    {
+      "tag": "🇭🇰香港-AUTO",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -433,7 +513,31 @@
       "tolerance": 50
     },
     {
-      "tag": "🇺🇸美国",
+      "tag": "🇨🇳台湾-AUTO",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "1m",
+      "tolerance": 50
+    },
+    {
+      "tag": "🇯🇵日本-AUTO",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "1m",
+      "tolerance": 50
+    },
+    {
+      "tag": "🇸🇬新加坡-AUTO",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "1m",
+      "tolerance": 50
+    },
+    {
+      "tag": "🇺🇸美国-AUTO",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -452,8 +556,13 @@
       "tag": "GLOBAL",
       "type": "selector",
       "outbounds": [
-        "direct",
         "proxy",
+        "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
         "🇭🇰香港",
         "🇨🇳台湾",
         "🇯🇵日本",
@@ -475,6 +584,7 @@
   "inbounds": [
     {
       "type": "tun",
+      "interface_name": "tun0",
       "address": [
         "172.19.0.0/30",
         "fdfe:dcba:9876::0/126"

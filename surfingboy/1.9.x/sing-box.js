@@ -12,7 +12,7 @@ config.outbounds.push(...proxies)
 
 // 检查各地区是否有匹配的节点并重命名
 const regionChecks = {
-  '🇭🇰香港': getTags(proxies, /港|hk|hongkong|kong kong|🇭🇰/i),
+  '🇭🇰香港': getTags(proxies, /港|hk|hongkong|hong kong|🇭🇰/i),
   '🇨🇳台湾': getTags(proxies, /台|tw|taiwan|🇹🇼/i),
   '🇯🇵日本': getTags(proxies, /日本|jp|japan|🇯🇵/i),
   '🇸🇬新加坡': getTags(proxies, /^(?!.*(?:us)).*(新|sg|singapore|🇸🇬)/i),
