@@ -531,6 +531,7 @@
   "inbounds": [
     {
       "type": "tun",
+      "interface_name": "tun0",
       "address": [
         "172.19.0.0/30",
         "fdfe:dcba:9876::0/126"

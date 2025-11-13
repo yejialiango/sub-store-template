@@ -286,29 +286,29 @@
       {
         "tag": "futu-private",
         "type": "remote",
-        "format": "json",
-        "url": "https://static.surfingboy.club/github/yejialiango/rules-set/futu/private-sites.json",
+        "format": "binary",
+        "url": "https://static.surfingboy.club/github/yejialiango/rules-set/futu/private-sites.srs",
         "download_detour": "direct"
       },
       {
         "tag": "surfingboy-personal",
         "type": "remote",
-        "format": "json",
-        "url": "https://static.surfingboy.club/github/yejialiango/rules-set/surfingboy/personal-cn-sites.json",
+        "format": "binary",
+        "url": "https://static.surfingboy.club/github/yejialiango/rules-set/surfingboy/personal-cn-sites.srs",
         "download_detour": "direct"
       },
       {
         "tag": "surfingboy-direct",
         "type": "remote",
-        "format": "json",
-        "url": "https://static.surfingboy.club/github/yejialiango/rules-set/surfingboy/other-direct-sites.json",
+        "format": "binary",
+        "url": "https://static.surfingboy.club/github/yejialiango/rules-set/surfingboy/other-direct-sites.srs",
         "download_detour": "direct"
       },
       {
         "tag": "surfingboy-proxy",
         "type": "remote",
-        "format": "json",
-        "url": "https://static.surfingboy.club/github/yejialiango/rules-set/surfingboy/other-proxy-sites.json",
+        "format": "binary",
+        "url": "https://static.surfingboy.club/github/yejialiango/rules-set/surfingboy/other-proxy-sites.srs",
         "download_detour": "direct"
       }
     ],
