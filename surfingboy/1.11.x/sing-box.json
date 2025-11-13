@@ -7,13 +7,13 @@
     },
     "servers": [
       {
-        "tag": "google",
+        "tag": "dns_proxy",
         "address": "https://8.8.8.8/dns-query",
         "detour": "proxy"
       },
       {
-        "tag": "ali",
-        "address": "https://223.5.5.5/dns-query",
+        "tag": "dns_direct",
+        "address": "local",
         "detour": "direct"
       },
       {
@@ -25,18 +25,47 @@
       {
         "outbound": "any",
         "action": "route",
-        "server": "ali",
+        "server": "dns_direct",
         "disable_cache": true
       },
       {
         "clash_mode": "Direct",
         "action": "route",
-        "server": "ali"
+        "server": "dns_direct"
       },
       {
         "clash_mode": "Global",
         "action": "route",
         "server": "fakeip"
+      },
+      {
+        "process_name": [
+          "TencentMeeting", "NemoDesktop", "ToDesk", "ToDesk_Service",
+          "WeChat", "Tailscale", "wireguard-go", "Tunnelblick",
+          "softwareupdated", "kubectl","FortiClient","QQPCMgr"
+        ],
+        "action": "route",
+        "server": "dns_direct"
+      },
+      {
+        "domain_suffix": [
+          "icloudnative.io", "fuckcloudnative.io", "sealos.io", "cdn.jsdelivr.net"
+        ],
+        "action": "route",
+        "server": "dns_direct"
+      },
+      {
+        "process_name": ["DropboxMacUpdate", "Dropbox"],
+        "action": "route",
+        "server": "dns_proxy"
+      },
+      {
+        "package_name": [
+          "com.google.android.youtube", "com.android.vending",
+          "org.telegram.messenger", "org.telegram.plus"
+        ],
+        "action": "route",
+        "server": "dns_proxy"
       },
       {
         "query_type": "HTTPS",
@@ -54,10 +83,26 @@
       {
         "rule_set": "cn_domain",
         "action": "route",
-        "server": "ali"
+        "server": "dns_direct"
+      },
+      {
+        "rule_set": [
+          "futu-private",
+          "surfingboy-personal",
+          "surfingboy-direct"
+        ],
+        "action": "route",
+        "server": "dns_direct"
+      },
+      {
+        "rule_set": [
+          "surfingboy-proxy"
+        ],
+        "action": "route",
+        "server": "dns_proxy"
       }
     ],
-    "final": "google",
+    "final": "dns_direct",
     "independent_cache": true
   },
   "route": {
@@ -183,6 +228,20 @@
         ],
         "action": "route",
         "outbound": "cn"
+      },
+      {
+        "rule_set": [
+          "futu-private",
+          "surfingboy-personal",
+          "surfingboy-direct"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "rule_set": [
+          "surfingboy-proxy"
+        ],
+        "outbound": "proxy"
       }
     ],
     "rule_set": [
@@ -290,6 +349,34 @@
         "format": "binary",
         "url": "https://static.surfingboy.club/github/meta-rules-dat/geo-lite/geosite/youtube.srs",
         "download_detour": "direct"
+      },
+      {
+        "tag": "futu-private",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://static.surfingboy.club/github/yejialiango/rules-set/futu/private-sites.srs",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "surfingboy-personal",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://static.surfingboy.club/github/yejialiango/rules-set/surfingboy/personal-cn-sites.srs",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "surfingboy-direct",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://static.surfingboy.club/github/yejialiango/rules-set/surfingboy/other-direct-sites.srs",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "surfingboy-proxy",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://static.surfingboy.club/github/yejialiango/rules-set/surfingboy/other-proxy-sites.srs",
+        "download_detour": "direct"
       }
     ],
     "final": "final",
@@ -300,6 +387,11 @@
       "tag": "proxy",
       "type": "selector",
       "outbounds": [
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
         "🇭🇰香港",
         "🇨🇳台湾",
         "🇯🇵日本",
@@ -311,11 +403,76 @@
       "default": "自动选择"
     },
     {
+      "tag": "🔞个🔞人🔞网🔞站🔞",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
+        "🇭🇰香港",
+        "🇨🇳台湾",
+        "🇯🇵日本",
+        "🇸🇬新加坡",
+        "🇺🇸美国",
+        "自动选择"
+      ],
+      "default": "自动选择"
+    },
+    {
+      "tag": "❤️个❤️人❤️网❤️站❤️",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
+        "🇭🇰香港",
+        "🇨🇳台湾",
+        "🇯🇵日本",
+        "🇸🇬新加坡",
+        "🇺🇸美国",
+        "自动选择"
+      ],
+      "default": "direct"
+    },
+    {
+      "tag": "富途🐮🐮",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
+        "🇭🇰香港",
+        "🇨🇳台湾",
+        "🇯🇵日本",
+        "🇸🇬新加坡",
+        "🇺🇸美国",
+        "自动选择"
+      ],
+      "default": "direct"
+    },
+    {
       "tag": "🔍Google谷歌",
       "type": "selector",
       "outbounds": [
         "proxy",
         "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
         "🇭🇰香港",
         "🇨🇳台湾",
         "🇯🇵日本",
@@ -331,6 +488,11 @@
       "outbounds": [
         "proxy",
         "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
         "🇭🇰香港",
         "🇨🇳台湾",
         "🇯🇵日本",
@@ -346,6 +508,11 @@
       "outbounds": [
         "proxy",
         "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
         "🇭🇰香港",
         "🇨🇳台湾",
         "🇯🇵日本",
@@ -361,6 +528,11 @@
       "outbounds": [
         "proxy",
         "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
         "🇭🇰香港",
         "🇨🇳台湾",
         "🇯🇵日本",
@@ -376,6 +548,11 @@
       "outbounds": [
         "proxy",
         "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
         "🇭🇰香港",
         "🇨🇳台湾",
         "🇯🇵日本",
@@ -406,6 +583,11 @@
       "outbounds": [
         "proxy",
         "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
         "🇭🇰香港",
         "🇨🇳台湾",
         "🇯🇵日本",
@@ -421,6 +603,11 @@
       "outbounds": [
         "proxy",
         "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
         "🇭🇰香港",
         "🇨🇳台湾",
         "🇯🇵日本",
@@ -436,6 +623,11 @@
       "outbounds": [
         "proxy",
         "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
         "🇭🇰香港",
         "🇨🇳台湾",
         "🇯🇵日本",
@@ -451,6 +643,11 @@
       "outbounds": [
         "proxy",
         "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
         "🇭🇰香港",
         "🇨🇳台湾",
         "🇯🇵日本",
@@ -462,30 +659,31 @@
     },
     {
       "tag": "🇭🇰香港",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "1m",
-      "tolerance": 50
+      "type": "selector",
+      "outbounds": []
     },
     {
       "tag": "🇨🇳台湾",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "1m",
-      "tolerance": 50
+      "type": "selector",
+      "outbounds": []
     },
     {
       "tag": "🇯🇵日本",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "1m",
-      "tolerance": 50
+      "type": "selector",
+      "outbounds": []
     },
     {
       "tag": "🇸🇬新加坡",
+      "type": "selector",
+      "outbounds": []
+    },
+    {
+      "tag": "🇺🇸美国",
+      "type": "selector",
+      "outbounds": []
+    },
+    {
+      "tag": "🇭🇰香港-AUTO",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -493,7 +691,31 @@
       "tolerance": 50
     },
     {
-      "tag": "🇺🇸美国",
+      "tag": "🇨🇳台湾-AUTO",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "1m",
+      "tolerance": 50
+    },
+    {
+      "tag": "🇯🇵日本-AUTO",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "1m",
+      "tolerance": 50
+    },
+    {
+      "tag": "🇸🇬新加坡-AUTO",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "1m",
+      "tolerance": 50
+    },
+    {
+      "tag": "🇺🇸美国-AUTO",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -512,8 +734,13 @@
       "tag": "GLOBAL",
       "type": "selector",
       "outbounds": [
-        "direct",
         "proxy",
+        "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
         "🇭🇰香港",
         "🇨🇳台湾",
         "🇯🇵日本",
@@ -536,8 +763,9 @@
         "172.19.0.0/30",
         "fdfe:dcba:9876::0/126"
       ],
-      "stack": "mixed",
+      "stack": "system",
       "auto_route": true,
+      "sniff": true,
       "platform": {
         "http_proxy": {
           "enabled": true,
@@ -556,8 +784,8 @@
     "clash_api": {
       "external_controller": "127.0.0.1:9090",
       "external_ui": "ui",
-      "external_ui_download_url": "https://ghfast.top/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
-      "external_ui_download_detour": "direct"
+      "external_ui_download_url": "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
+      "external_ui_download_detour": "proxy"
     },
     "cache_file": {
       "enabled": true,
