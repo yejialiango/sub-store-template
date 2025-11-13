@@ -78,13 +78,13 @@
           "surfingboy-personal",
           "surfingboy-direct"
         ],
-        "outbound": "dns_direct"
+        "server": "dns_direct"
       },
       {
         "rule_set": [
           "surfingboy-proxy"
         ],
-        "outbound": "dns_proxy"
+        "server": "dns_proxy"
       }
     ],
     "final": "dns_direct"
