@@ -635,7 +635,7 @@
         "🇺🇸美国",
         "自动选择"
       ],
-      "default": "proxy"
+      "default": "direct"
     },
     {
       "tag": "final",
