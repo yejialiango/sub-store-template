@@ -397,46 +397,6 @@
       "default": "自动选择"
     },
     {
-      "tag": "🔞个🔞人🔞网🔞站🔞",
-      "type": "selector",
-      "outbounds": [
-        "proxy",
-        "direct",
-        "🇭🇰香港-AUTO",
-        "🇨🇳台湾-AUTO",
-        "🇯🇵日本-AUTO",
-        "🇸🇬新加坡-AUTO",
-        "🇺🇸美国-AUTO",
-        "🇭🇰香港",
-        "🇨🇳台湾",
-        "🇯🇵日本",
-        "🇸🇬新加坡",
-        "🇺🇸美国",
-        "自动选择"
-      ],
-      "default": "自动选择"
-    },
-    {
-      "tag": "❤️个❤️人❤️网❤️站❤️",
-      "type": "selector",
-      "outbounds": [
-        "proxy",
-        "direct",
-        "🇭🇰香港-AUTO",
-        "🇨🇳台湾-AUTO",
-        "🇯🇵日本-AUTO",
-        "🇸🇬新加坡-AUTO",
-        "🇺🇸美国-AUTO",
-        "🇭🇰香港",
-        "🇨🇳台湾",
-        "🇯🇵日本",
-        "🇸🇬新加坡",
-        "🇺🇸美国",
-        "自动选择"
-      ],
-      "default": "direct"
-    },
-    {
       "tag": "富途🐮🐮",
       "type": "selector",
       "outbounds": [
@@ -615,6 +575,46 @@
         "自动选择"
       ],
       "default": "proxy"
+    },
+    {
+      "tag": "🔞个🔞人🔞网🔞站🔞",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
+        "🇭🇰香港",
+        "🇨🇳台湾",
+        "🇯🇵日本",
+        "🇸🇬新加坡",
+        "🇺🇸美国",
+        "自动选择"
+      ],
+      "default": "自动选择"
+    },
+    {
+      "tag": "❤️个❤️人❤️网❤️站❤️",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "direct",
+        "🇭🇰香港-AUTO",
+        "🇨🇳台湾-AUTO",
+        "🇯🇵日本-AUTO",
+        "🇸🇬新加坡-AUTO",
+        "🇺🇸美国-AUTO",
+        "🇭🇰香港",
+        "🇨🇳台湾",
+        "🇯🇵日本",
+        "🇸🇬新加坡",
+        "🇺🇸美国",
+        "自动选择"
+      ],
+      "default": "direct"
     },
     {
       "tag": "cn",
