@@ -1,4 +1,4 @@
-const { type, name } = $arguments
+const { type, name, start_tailscale, ts_auth_key } = $arguments
 
 let config = JSON.parse($files[0])
 let proxies = await produceArtifact({
@@ -88,6 +88,40 @@ config.outbounds.forEach(outbound => {
     outbound.outbounds = outbound.outbounds.filter(tag => !regionsToRemove.includes(tag))
   }
 })
+
+// Tailscale 支持
+if (start_tailscale === 'true' && ts_auth_key) {
+  // 添加 dns.servers
+  config.dns.servers.push({
+    type: 'tailscale',
+    tag: 'dns_ts',
+    endpoint: 'ts-ep',
+    accept_default_resolvers: false
+  })
+
+  // 添加 dns.rules
+  config.dns.rules.unshift({
+    rule_set: 'tailscale-domains',
+    action: 'route',
+    server: 'dns_ts'
+  })
+
+  // 添加 route.rules
+  config.route.rules.unshift({
+    rule_set: 'tailscale-domains',
+    action: 'route',
+    outbound: 'ts-ep'
+  })
+
+  // 添加 endpoints
+  config.endpoints = [
+    {
+      type: 'tailscale',
+      tag: 'ts-ep',
+      auth_key: ts_auth_key
+    }
+  ]
+}
 
 $content = JSON.stringify(config, null, 2)
 
