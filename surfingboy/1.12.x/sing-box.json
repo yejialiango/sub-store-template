@@ -378,6 +378,13 @@
           "format": "binary",
           "url": "https://static.surfingboy.club/github/yejialiango/rules-set/tailscale/liang-machines.srs",
           "download_detour": "direct"
+      },
+      {
+          "tag": "tailscale-route-cidrs",
+          "type": "remote",
+          "format": "binary",
+          "url": "https://static.surfingboy.club/github/yejialiango/rules-set/tailscale/tailscale-route.srs",
+          "download_detour": "direct"
       }
     ],
     "final": "final",

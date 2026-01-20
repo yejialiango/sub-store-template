@@ -106,7 +106,43 @@ if (start_tailscale === 'true' && ts_auth_key) {
     server: 'dns_ts'
   })
 
-  // 添加 route.rules
+  // 添加 🔗Tailscale selector outbound
+  // 包含 ts-ep, direct, proxy, 以及类似 proxy 的地区组
+  const tsRouteOutbound = {
+    tag: '🔗Tailscale',
+    type: 'selector',
+    outbounds: [
+      'ts-ep',
+      'direct',
+      'proxy',
+      '🇭🇰香港-AUTO',
+      '🇨🇳台湾-AUTO',
+      '🇯🇵日本-AUTO',
+      '🇸🇬新加坡-AUTO',
+      '🇺🇸美国-AUTO',
+      '🇭🇰香港',
+      '🇨🇳台湾',
+      '🇯🇵日本',
+      '🇸🇬新加坡',
+      '🇺🇸美国',
+      '自动选择'
+    ],
+    default: 'direct'
+  }
+  // 过滤掉不存在的地区组
+  tsRouteOutbound.outbounds = tsRouteOutbound.outbounds.filter(tag =>
+    ['ts-ep', 'direct', 'proxy'].includes(tag) || !regionsToRemove.includes(tag)
+  )
+  config.outbounds.unshift(tsRouteOutbound)
+
+  // 添加 route.rules - tailscale-route-cidrs 规则在最前面
+  config.route.rules.unshift({
+    rule_set: 'tailscale-route-cidrs',
+    action: 'route',
+    outbound: '🔗Tailscale'
+  })
+
+  // 添加 route.rules - tailscale-domains 规则
   config.route.rules.unshift({
     rule_set: 'tailscale-domains',
     action: 'route',
@@ -118,7 +154,8 @@ if (start_tailscale === 'true' && ts_auth_key) {
     {
       type: 'tailscale',
       tag: 'ts-ep',
-      auth_key: ts_auth_key
+      auth_key: ts_auth_key,
+      accept_routes: true
     }
   ]
 }
