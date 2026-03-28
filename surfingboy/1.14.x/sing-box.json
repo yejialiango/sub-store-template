@@ -229,12 +229,14 @@
           "surfingboy-personal",
           "surfingboy-direct"
         ],
+        "action": "route",
         "outbound": "direct"
       },
       {
         "rule_set": [
           "surfingboy-proxy"
         ],
+        "action": "route",
         "outbound": "proxy"
       }
     ],
