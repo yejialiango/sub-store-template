@@ -780,7 +780,6 @@
       ],
       "stack": "system",
       "auto_route": true,
-      "sniff": true,
       "strict_route": true,
       "platform": {
         "http_proxy": {
