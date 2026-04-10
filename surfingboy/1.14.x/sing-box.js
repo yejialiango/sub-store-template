@@ -97,14 +97,25 @@ if (start_tailscale === 'true' && ts_auth_key) {
     tag: 'dns_ts',
     endpoint: 'ts-ep',
     accept_default_resolvers: false
+  }, {
+    type: 'udp',
+    tag: 'dns_futu',
+    detour: 'ts-ep',
+    server: '10.13.56.4'
   })
 
-  // 添加 dns.rules
-  config.dns.rules.unshift({
-    rule_set: 'tailscale-domains',
-    action: 'route',
-    server: 'dns_ts'
+  // 从原有 dns.rules 中移除包含 futu-private 的合并规则，拆分处理
+  config.dns.rules = config.dns.rules.filter(rule => {
+    if (Array.isArray(rule.rule_set) && rule.rule_set.includes('futu-private')) return false
+    return true
   })
+
+  // 在 dns.rules 最前面添加规则（按顺序：futu-private, tailscale-domains, surfingboy）
+  config.dns.rules.unshift(
+    { rule_set: 'futu-private', server: 'dns_futu' },
+    { rule_set: 'tailscale-domains', server: 'dns_ts' },
+    { rule_set: ['surfingboy-personal', 'surfingboy-direct'], server: 'dns_direct' }
+  )
 
   // 添加 🔗Tailscale selector outbound
   // 包含 ts-ep, direct, proxy, 以及类似 proxy 的地区组
@@ -135,19 +146,22 @@ if (start_tailscale === 'true' && ts_auth_key) {
   )
   config.outbounds.unshift(tsRouteOutbound)
 
-  // 添加 route.rules - tailscale-route-cidrs 规则在最前面
-  config.route.rules.unshift({
-    rule_set: 'tailscale-route-cidrs',
-    action: 'route',
-    outbound: '🔗Tailscale'
+  // 从原有 route.rules 中移除包含 futu-private 的合并规则，拆分处理
+  config.route.rules = config.route.rules.filter(rule => {
+    if (Array.isArray(rule.rule_set) && rule.rule_set.includes('futu-private')) return false
+    return true
+  })
+  // 保留 surfingboy-personal + surfingboy-direct → direct
+  config.route.rules.push({
+    rule_set: ['surfingboy-personal', 'surfingboy-direct'],
+    outbound: 'direct'
   })
 
-  // 添加 route.rules - tailscale-domains 规则
-  config.route.rules.unshift({
-    rule_set: 'tailscale-domains',
-    action: 'route',
-    outbound: 'ts-ep'
-  })
+  // 在 route.rules 最前面添加规则（按顺序：tailscale-domains, futu-private+tailscale-route-cidrs）
+  config.route.rules.unshift(
+    { rule_set: 'tailscale-domains', outbound: 'ts-ep' },
+    { rule_set: ['futu-private', 'tailscale-route-cidrs'], outbound: '🔗Tailscale' }
+  )
 
   // 添加 endpoints
   config.endpoints = [
